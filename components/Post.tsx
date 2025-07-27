@@ -34,6 +34,7 @@ type PostProps = {
 export default function Post({ post }: PostProps) {
   const [isLiked, setIsLiked] = useState(post.isLiked);
   const [likesCount, setlikesCount] = useState(post.likes);
+  const [commentCount, setCommentCount] = useState(post.comments);
   const [showComments, setShowComments] = useState(false);
 
   const toggleLike = useMutation(api.posts.toggleLike);
@@ -99,7 +100,7 @@ export default function Post({ post }: PostProps) {
               color={isLiked ? COLORS.primary : COLORS.white}
             />
           </TouchableOpacity>
-          <TouchableOpacity>  
+          <TouchableOpacity onPress={() => setShowComments(true)}>  
             <Ionicons
               name="chatbubble-outline"
               size={22}
